@@ -1,0 +1,45 @@
+body{
+background-color: #eee;
+}
+#container{
+margin-left: 10%;
+margin-right:10%;
+padding: 1%;
+font-family: Courier,Verdana, Arial, sans-serif; ;
+}
+hr{
+border-top: 3px solid #bbb;
+}
+h1,h2{
+    color: green;
+}
+#info p::first-letter {
+        font-size: 200%;
+}
+span, dt{
+color: #ff6600;
+}
+dl{
+text-indent: 50px;
+}
+table img{
+height:300px;
+width:300px;
+}
+a{
+font-size:1em;
+font-weight:bold;
+color: blue;
+text-decoration: none;
+}
+a:link{
+color: red;
+}
+a.visited{
+color: black;
+}
+
+a.hover{
+color: green;
+}
+
