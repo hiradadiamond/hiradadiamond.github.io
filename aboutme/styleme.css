@@ -42,4 +42,7 @@ color: black;
 a.hover{
 color: green;
 }
+#footer{
+   float: right;
+}
 
