@@ -27,7 +27,7 @@ span{
     text-decoration: line-through;
 }
 
-#commentsDiv{
+.commentsDiv{
     background-color: yellow;
     margin:.5%;
     font-style: italic;
