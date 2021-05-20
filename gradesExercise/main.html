@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>Retrieve Grade</title>
+</head>
+<body>
+  <div id="header">
+    <h1>
+      Student's Grade Information
+    </h1>
+  </div>
+  <div id="main">
+    <form action="#" method="post">
+      <fieldset id="stuinfo">
+        <legend>UserInfo</legend>
+        <label>Student Name</label>
+        <input type="text" name="student-name"/>
+        <label>Student Id</label>
+        <input type="text" name="id"/>
+      </fieldset>
+      <fieldset id="assignments">
+        <legend>Course</legend>
+        <select>
+          <option>WAP</option>
+          <option>ALgorithms</option>
+        </select>
+        <select>
+          <option>Assignments1</option>
+          <option>Assignment2</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Entry Info:</legend>
+        <input type="radio" name="entry" value="05/2021" checked="checked" /> May 2021
+        <input type="radio" name="entry" value="02/2021" /> Feb 2021
+        <input type="radio" name="entry" value="11/2020" /> Nov 2020
+      </fieldset>
+      <input type="checkbox" name="agreement"> These informations are correct and I am not lying.
+      <br/>
+      <input type="submit" name="submit" value="Get Grade!">
+    </form>
+  </div>
+<div id="fotter">
+
+</div>
+</body>
+</html>
