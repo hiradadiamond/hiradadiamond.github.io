@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
   <title>Retrieve Grade</title>
+  <link href="style.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header">
+  <div>
     <h1>
-      Student's Grade Information
+      Retrieve Student's Grade Information
     </h1>
-  </div>
   <div id="main">
     <form action="#" method="post">
       <fieldset id="stuinfo">
-        <legend>UserInfo</legend>
-        <label>Student Name</label>
+        <label>StudentName: </label>
         <input type="text" name="student-name"/>
-        <label>Student Id</label>
-        <input type="text" name="id"/>
+      </fieldset>
+      <fieldset id="stuinfo">
+        <label>StudentId: </label>
+        <input type="text" name="student-id"/>
       </fieldset>
       <fieldset id="assignments">
-        <legend>Course</legend>
+        <label>Course: </label>
         <select>
           <option>WAP</option>
           <option>ALgorithms</option>
@@ -31,7 +32,7 @@
         </select>
       </fieldset>
       <fieldset>
-        <legend>Entry Info:</legend>
+        <label>Entry info: </label>
         <input type="radio" name="entry" value="05/2021" checked="checked" /> May 2021
         <input type="radio" name="entry" value="02/2021" /> Feb 2021
         <input type="radio" name="entry" value="11/2020" /> Nov 2020
@@ -41,8 +42,6 @@
       <input type="submit" name="submit" value="Get Grade!">
     </form>
   </div>
-<div id="fotter">
-
-</div>
+  </div>
 </body>
 </html>
