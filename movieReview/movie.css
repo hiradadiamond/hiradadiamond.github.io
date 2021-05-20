@@ -43,14 +43,12 @@ body{
     overflow: auto;
 }
 #right{
-    overflow: hidden;
     float:right;
     width: 250px;
 }
 #left {
     width:550px;
     overflow: hidden;
-    
 }
 #rotten{
     margin-top:0px;
@@ -59,12 +57,12 @@ body{
     background-repeat: repeat-x;
     overflow: hidden;
     clear: right; 
-    font-size: 48pt; 
+    font-size: 48pt;
+    height: 83px;
     color: red;
 }
 #rotten img{
     vertical-align: baseline;
-    height: 83px;
     margin-bottom:-.2em;
 }
 
@@ -85,10 +83,6 @@ body{
     margin-bottom: 20pt;
 
 }
-ul{
-    list-style-type: none;
-}
-
 .reviewDiv{
     width: auto;
     border: 2px solid grey;
@@ -114,7 +108,7 @@ ul{
 #footer{
     width: 100%;
     background-color: #A2B964;
-    overflow:hidden;
+    clear:right;
 }
 #footer p{
     margin: 0;
