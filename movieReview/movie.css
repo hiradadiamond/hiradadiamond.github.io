@@ -7,7 +7,6 @@ body{
 }
 #imageBanner{
     background-image: url(images/bannerbg.png); 
-    background-position: fixed;
     background-repeat: repeat-x;
     height: 50px;  
 }
@@ -51,14 +50,6 @@ body{
 #left {
     width:550px;
     overflow: hidden;
-    
-}
-.left-column{
-    column-count: 2;
-    column-width: 47%;
-    column-gap: 2%;
-    margin-top:2%;
-    padding: 0.5em;
     
 }
 #rotten{
