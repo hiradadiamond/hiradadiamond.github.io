@@ -124,10 +124,20 @@ label{
 	padding:0.2em;
 	margin:5px;
 }
-#usersimg{
+.usersimg{
 	float:left;
 	vertical-align: top;
 }
+table{
+	height: 256px;
+}
+table th{
+	background-color: #E0E0FF;
+	text-align: center;
+	margin:2%;
+}
+
+
 
 
 
