@@ -39,3 +39,8 @@ input[type="submit"]{
     color: white;
     font-size: 20px;
 }
+#footer{
+    position:fixed;
+    right:0;
+    bottom:0;
+}
