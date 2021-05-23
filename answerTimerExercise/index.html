@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Timer Exercise</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <h1>Timer Exercise Answers</h1>
+    <dl>
+        <dt>
+            <h3>1. What is the difference between the following 2 statements?</h3>
+            <pre>
+                setTimeout(booyah, 2000);
+                setTimeout(booyah(), 2000);
+            </pre>
+
+        </dt>
+        <dd>
+
+            <p>
+                setTimeout(booyah, 2000): This is the actual way of giving parameters. Here after 2000 milliseconds,
+                booyah() method is called;
+                <br />
+                setTimeout(booyah(), 2000): This is not the right way of giving parameters. Here without waiting 2000
+                milliseconds it directly jumps to booyah() and performs it.
+            </p>
+        </dd>
+        <dt>
+            <h3>2.What do the following 2 alerts display (answer without running the code)?</h3>
+            <pre>
+            var myfunc = function(a, x) {
+                return a * x;
+                };
+                var x = myfunc(2, 3);
+                var y = myfunc;
+                alert(x);
+                alert(y(2,3));
+
+           </pre>
+        </dt>
+        <dd>
+            <p>
+                alert(x) = 6
+                <br />
+                alert(y) = 6
+            </p>
+
+        </dd>
+        <dt>
+            <h3>3. Write functions booyah1 and booyah2 so that in both cases below, an alert box comes up after 2
+                seconds
+                that says “BOOYAH!”
+            </h3>
+            <pre>
+                setTimeout(booyah1, 2000); 
+                setTimeout(booyah2(), 2000);
+            </pre>
+        </dt>
+        <dd>
+            <pre> Answers:
+                    function booyah1(){
+                    alert(“BOOYAH!”);
+                    }
+                    
+                    function booyah2(){
+                            setTimeout(booyah1, 2000);
+                    }
+                    </pre>
+
+            </p>
+        </dd>
+        <dt>
+            <h3>
+                4. What is "Unobtrusive Javascript"? What is the practical application of Unobtrusive Javascript (and
+                the
+                reasons for using it)?
+
+            </h3>
+        </dt>
+        <dd>
+            <p>
+                Answers:
+                Unobtrusive Javascript: is a general approach to the use of JavaScript in web pages. Separate html dom
+                contents with javascripts contents.
+                Practical application of unobtrusive Javascript:
+
+            </p>
+        </dd>
+    </dl>
+</body>
+
+</html>
