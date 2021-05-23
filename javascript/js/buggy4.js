@@ -6,7 +6,6 @@ function somethingElse() {
         alert("Smaller");
     }
 }
-
 function gogogo() {
     alert("Yay, it works!");
 }
