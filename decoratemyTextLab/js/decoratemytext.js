@@ -1,33 +1,65 @@
-window.onload = function() {
-    document.getElementById("onClick").onclick = delayMsg2;
-    document.getElementById("checkBox").onchange = checkBoxChangeFunction;
-    document.getElementById("igplay").onclick= igplayFunction;
+window.onload = function(){
+    document.getElementById("clickButton").onclick = timerFont;
+    document.getElementById("checkBox").onchange = setBackground;
+    document.getElementById("igplay").onclick = igplayFunction;
+    document.getElementById("malkovich").onclick = malkovichFunc;
+}
+function largeInputFont(){
+    document.getElementById("inputArea").style.fontSize = "24pt";
+}
+function checkBoxChangeFont(){
+    if(this.checked) {
+       var inputBox = document.getElementById("inputArea");
+       inputBox.style.textDecoration = "underline";
+       inputBox.style.color = "green";
+    }
+    else{
+        var inputBox = document.getElementById("inputArea");
+        inputBox.style.color = "blue";
+    }
+}
 
+function setBackground(){
+    if(this.checked){
+        document.body.style.backgroundImage = "url('images/background.png')";
+    }
 }
-function clickFunction(){
-var el = document.getElementById("inputArea");
-var style = window.getComputedStyle(el, null).getPropertyValue("font-size");
-var fontSize = parseInt(style); 
-el.style.fontSize = (fontSize + 2) + "pt";
-}
-function checkBoxChangeFunction(){
-    "use strict";
-    document.getElementById("body").style.backgroundImage = "url(images/bckimg.jpg)";
+function largerFontFromPrevFont(){
+    var inputBox = document.getElementById("inputArea");
+    var prevFont = window.getComputedStyle(inputBox,null).getPropertyValue("font-size");
+    var newFont =  parseInt(prevFont) + 2 + "pt";
+    inputBox.style.fontSize = newFont;
 
-}
-function igplay(){
-    var input
 }
 var timer = null;
-function delayMsg2(){
-    setTimeout(booyah1(), 2000);
-    // if(timer==null)
-    // setInterval(clickFunction, 500);  
-    // else{
-    //     clearInterval(timer);
-    //     timer = null;
-    // }  
+function timerFont(){
+  if(timer == null){
+      setInterval(largerFontFromPrevFont, 500);
+  }
+  else{
+      clearInterval(timer);
+      timer = null;
+  }
 }
+
+function malkovichFunc(){
+    var inputBoxElem = document.getElementById("inputArea");
+    var values = inputBoxElem.value;
+    var trimValues = values.trim("");
+    var splitValues = trimValues.split(" ");
+    for(var i = 0; i< splitValues.length; i++){
+        var curStr = splitValues[i];
+        if(curStr.length >= 5){
+            splitValues[i]= "Malkovich";
+        }
+        
+    }
+    var result = splitValues.toString();
+    var output = result.replaceAll(",", " ");
+    console.log(output);
+    inputBoxElem.value = output;
+}
+
 function igplayFunction(){
     var vowels = ['A', 'E', 'I', 'O', 'U'];
     var textEle = document.getElementById("inputArea");
@@ -55,22 +87,13 @@ function igplayFunction(){
             }
             
         }
-        result[idx++] = values[i].substring(subIndex+1, values[i].length)+ values[i].substring(0, subIndex+1) + "ay";
+        result[idx++] = values[i].substring(subIndex+1, values[i].length) + values[i].substring(0, subIndex+1) + "ay";
     }
     var output= result.toString();
     var out = output.replaceAll(",", " ");
     textEle.value = out;
     console.log(out);
 }
-
-function booyah1(){
-	alert("BOOYAH!");
-}
-
-function booyah2(){
-	setTimeout(booyah1, 2000);
-}
-
 
         
 
