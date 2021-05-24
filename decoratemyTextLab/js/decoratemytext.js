@@ -1,6 +1,6 @@
 window.onload = function(){
     document.getElementById("clickButton").onclick = timerFont;
-    document.getElementById("checkBox").onchange = setBackground;
+    document.getElementById("checkBox").onchange = checkBoxChangeFont;
     document.getElementById("igplay").onclick = igplayFunction;
     document.getElementById("malkovich").onclick = malkovichFunc;
 }
@@ -8,21 +8,22 @@ function largeInputFont(){
     document.getElementById("inputArea").style.fontSize = "24pt";
 }
 function checkBoxChangeFont(){
+    var inputElem = document.getElementById("inputArea");
     if(this.checked) {
        var inputBox = document.getElementById("inputArea");
        inputBox.style.textDecoration = "underline";
        inputBox.style.color = "green";
-    }
+       setBackground();
+    } 
     else{
-        var inputBox = document.getElementById("inputArea");
-        inputBox.style.color = "blue";
-    }
+        document.body.style.backgroundImage = "none";
+        inputElem.style.color = "";
+        inputElem.style.textDecoration = "none";
+    } 
 }
 
 function setBackground(){
-    if(this.checked){
         document.body.style.backgroundImage = "url('images/background.png')";
-    }
 }
 function largerFontFromPrevFont(){
     var inputBox = document.getElementById("inputArea");
