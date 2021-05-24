@@ -61,40 +61,47 @@ function malkovichFunc(){
 }
 
 function igplayFunction(){
-    var vowels = ['A', 'E', 'I', 'O', 'U'];
+    var vowels = ['A', 'E', 'I', 'O', 'U', 'a', 'e', 'i', 'o', 'u'];
     var textEle = document.getElementById("inputArea");
-    var result = [];
-    var sartingCharIndex = textEle.value.indexOf("S");
-    var trimStr = textEle.value.trim();
-    var values = trimStr.split(/[\s\n ]+/);
+    var values = textEle.value.split('\n');
     var idx = 0;
     console.log(values);
+    var finalString = "";
     for(var i = 0; i < values.length; i++){
-        var subIndex = 0;
-        var str = values[i];
-        if(values[i]==""){
-            continue;
-        }
-        if(parseInt(values[i].charAt(0))){
-            result[idx++]=values[i];
-            continue;
-        }
-        for(var k = 0; k < str.length; k++){
-            var charc = str.charAt(k);
-            if(vowels.includes(charc)){
-                subIndex = k;
-                break;
-            }
-            
-        }
-        result[idx++] = values[i].substring(subIndex+1, values[i].length) + values[i].substring(0, subIndex+1) + "ay";
-    }
-    var output= result.toString();
-    var out = output.replaceAll(",", " ");
-    textEle.value = out;
-    console.log(out);
-}
+        var lines = values[i].split(' ');
+        for(var j=0;j<lines.length;j++) {
+            var str = lines[j];
+            if(lines[j]==""){
+                finalString += " ";
+                continue;
+            } else {
+                var curString = lines[j];
+                var idx = 0;
+                var consonentCluster = "";
+                var rest = "";
+                if (curString.charAt(idx) >= '0' && curString.charAt(idx) <= '9') {
+                    finalString += curString;
+                    continue;
+                }
 
+                while(idx < curString.length && !vowels.includes(curString.charAt(idx))) {
+                    console.log(vowels.includes(curString.charAt(idx)));
+                    consonentCluster += curString.charAt(idx++);
+                } 
+
+                while(idx < curString.length) {
+                    rest += curString.charAt(idx++)
+                }
+                var curResult = rest + consonentCluster + "ay ";
+                console.log(curResult);
+                finalString += curResult;
+            }
+        }
+        finalString += "\n";
+    }
+    textEle.value = finalString;
+    console.log(finalString);
+}
         
 
   
