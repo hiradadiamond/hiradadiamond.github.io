@@ -44,20 +44,35 @@ function timerFont(){
 
 function malkovichFunc(){
     var inputBoxElem = document.getElementById("inputArea");
-    var values = inputBoxElem.value;
-    var trimValues = values.trim("");
-    var splitValues = trimValues.split(" ");
+    var splitValues = inputBoxElem.value.split('\n');
+    console.log(splitValues);
+    var resultStr = "";
     for(var i = 0; i< splitValues.length; i++){
-        var curStr = splitValues[i];
-        if(curStr.length >= 5){
-            splitValues[i]= "Malkovich";
+        var curStr = splitValues[i].split(" ");
+        console.log(curStr);
+        for(var j = 0; j < curStr.length; j++){
+            if(curStr[j]==""){
+                resultStr+= " ";
+                continue;
+            }
+            else{
+
+                if(parseInt(curStr[j])){
+                    resultStr += curStr[j] + " ";
+                    continue;
+                }
+                else if(curStr[j].length>=5){
+                    resultStr += "Malkovich ";
+                }
+                else{
+                    resultStr += curStr[j]+ " ";
+                }
+            }
         }
-        
+        resultStr += "\n";   
     }
-    var result = splitValues.toString();
-    var output = result.replaceAll(",", " ");
-    console.log(output);
-    inputBoxElem.value = output;
+    console.log(resultStr);
+    inputBoxElem.value =  resultStr;  
 }
 
 function igplayFunction(){
