@@ -4,7 +4,7 @@
 <head>
     <title>Timer Exercise</title>
     <meta charset="utf-8" />
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -83,11 +83,30 @@
         <dd>
             <p>
                 Answers:
-                Unobtrusive Javascript: is a general approach to the use of JavaScript in web pages. Separate html dom
-                contents with javascripts contents.
-                Practical application of unobtrusive Javascript:
-
+                This is a standard and the right way of writing javascript code. This says that javascript should not be
+                colluded with html and css. They should be writing separately in their own files. This also kind of
+                aligns with the principle of separation of concern.
+                One of the reasons to write Unobtrusive javascript is because adding javascript should be a constructive
+                addition of new features. It should not destroy the existing html content when we want to update
+                javascript. The other reason is that not all browsers support the javascript you write, so if the
+                javascript is separated out from other components of a web page, at least the web page will work but
+                with lower functionality i.e. with only html and css. Also, separating out javascript completely will
+                help fellow developers who inherit the code to update and/or add features in the future later
             </p>
+            <pre>
+                Obtrusive Way:
+                <input id="inputText" type="text" value="<a href='some_url' onclick='window.open('some_other_url');return false;''>Click Me</a>"/>
+            </pre>
+            <pre>
+                Unobtrusive Way:
+                HTML File: index.html
+                <input id="inputText" type="text" value=" <a href='some url' id='click_me_btn'>Click me</a>"/>
+            </pre>
+            <pre>
+                Javascript File: script.js 
+                var clickme = document.getElementById("click_me_btn");
+                clickme.onclick = function() { };
+            </pre>
         </dd>
     </dl>
 </body>
