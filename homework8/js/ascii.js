@@ -19,7 +19,7 @@ function stopFunc() {
   document.getElementById("animation").disabled = false;
   clearInterval(delaytimer);
   delaytimer = null;
-  textBox.value = frames[0];
+  document.getElementById("textBox").value = frames[0];
 }
 function startFunc() {
   document.getElementById("start").disabled = true;
