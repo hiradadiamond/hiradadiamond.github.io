@@ -5,7 +5,7 @@ body{
     font-weight: bold;
     margin:0;
 }
-top{
+#header{
     font-size: 32pt;
     font-weight: bold;
     text-align: center;
