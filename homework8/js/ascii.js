@@ -1,7 +1,7 @@
-window.onload = function () {
+ window.onload = function () {
   "use strict";
-  document.getElementById("start").onclick = startFunc;
-  document.getElementById("stop").onclick = stopFunc;
+  document.getElementById("start").onclick = startAnimation;
+  document.getElementById("stop").onclick = stopAnimation;
   document.getElementById("animation").onchange = animationChange;
   document.getElementById("fontsize").onchange = changeFontSizeFunc;
   document.getElementById("speed").onchange = setSpeedFunc;
@@ -13,7 +13,7 @@ var curFrame;
 var frames = "";
 var targetDelay = 250;
 
-function stopFunc() {
+function stopAnimation() {
   document.getElementById("stop").disabled = true;
   document.getElementById("start").disabled = false;
   document.getElementById("animation").disabled = false;
@@ -21,7 +21,7 @@ function stopFunc() {
   delaytimer = null;
   document.getElementById("textBox").value = frames[0];
 }
-function startFunc() {
+function startAnimation() {
   document.getElementById("start").disabled = true;
   document.getElementById("stop").disabled = false;
   document.getElementById("animation").disabled = true;
@@ -38,8 +38,11 @@ function startFunc() {
   }
 }
 function setSpeedFunc() {
-  if (this.checked) targetDelay = 50;
-  else targetDelay = 250;
+  if (this.checked) {
+    targetDelay = 50;
+  } else {
+    targetDelay = 250;
+  }
 }
 function changeFontSizeFunc() {
   "use strict";
