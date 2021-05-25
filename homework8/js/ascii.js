@@ -16,13 +16,15 @@ var targetDelay = 250;
 function stopFunc() {
   document.getElementById("stop").disabled = true;
   document.getElementById("start").disabled = false;
+  document.getElementById("animation").disabled = false;
   clearInterval(delaytimer);
   delaytimer = null;
-  document.getElementById("textBox").value = frames[0];
+  textBox.value = frames[0];
 }
 function startFunc() {
   document.getElementById("start").disabled = true;
   document.getElementById("stop").disabled = false;
+  document.getElementById("animation").disabled = true;
   var animationSelect = document.getElementById("animation").value;
   var animationStr = ANIMATIONS[animationSelect];
   frames = animationStr.split("=====\n");
@@ -36,15 +38,12 @@ function startFunc() {
   }
 }
 function setSpeedFunc() {
- if(this.checked)
-  targetDelay = 50;
-  else
-  targetDelay = 250;
+  if (this.checked) targetDelay = 50;
+  else targetDelay = 250;
 }
 function changeFontSizeFunc() {
   "use strict";
   var selectFontSize = document.getElementById("fontsize").value;
-  console.log(selectFontSize);
   var textBox = document.getElementById("textBox");
   switch (selectFontSize) {
     case "tiny":
@@ -73,7 +72,6 @@ function changeFontSizeFunc() {
 function animationChange() {
   "use strict";
   var selectAnimation = document.getElementById("animation").value;
-  console.log(selectAnimation);
   var textBox = document.getElementById("textBox");
   switch (selectAnimation) {
     case "Juggler":
@@ -104,5 +102,4 @@ function preSetAnimation() {
   } else {
     curFrame = 0;
   }
-  console.log("delay Timer" + curFrame);
 }
