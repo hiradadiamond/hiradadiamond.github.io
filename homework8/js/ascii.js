@@ -4,14 +4,16 @@ window.onload = function () {
   document.getElementById("stop").onclick = stopFunc;
   document.getElementById("animation").onchange = animationChange;
   document.getElementById("fontsize").onchange = changeFontSizeFunc;
-  document.getElementById("speed").onclick = setSpeedFunc;
+  document.getElementById("speed").onchange = setSpeedFunc;
 };
 var textBox = document.getElementById("textBox");
 var animationList = ["EXERCISE", "JUGGLER", "BIKE", "DIVE"];
 var delaytimer = null;
-var curFrame ;
+var curFrame;
 var frames = "";
-function stopFunc(){
+var targetDelay = 250;
+
+function stopFunc() {
   document.getElementById("stop").disabled = true;
   document.getElementById("start").disabled = false;
   clearInterval(delaytimer);
@@ -26,14 +28,19 @@ function startFunc() {
   frames = animationStr.split("=====\n");
   console.log(frames);
   curFrame = 1;
-    if(delaytimer == null){
-      delaytimer = setInterval(preSetAnimation, 250);
-    }
-    else{
-      clearInterval(delaytimer);
-      delaytimer = null;
-    } 
+  if (delaytimer == null) {
+    delaytimer = setInterval(preSetAnimation, targetDelay);
+  } else {
+    clearInterval(delaytimer);
+    delaytimer = null;
   }
+}
+function setSpeedFunc() {
+ if(this.checked)
+  targetDelay = 50;
+  else
+  targetDelay = 250;
+}
 function changeFontSizeFunc() {
   "use strict";
   var selectFontSize = document.getElementById("fontsize").value;
@@ -92,11 +99,10 @@ function animationChange() {
 }
 
 function preSetAnimation() {
-  if(curFrame < frames.length){
-    document.getElementById("textBox").value = frames[curFrame++];  
-  }
-  else{
+  if (curFrame < frames.length) {
+    document.getElementById("textBox").value = frames[curFrame++];
+  } else {
     curFrame = 0;
   }
-  console.log("delay Timer"+ curFrame);  
+  console.log("delay Timer" + curFrame);
 }
