@@ -1,21 +1,41 @@
 window.onload = function () {
-    "use strict";
+  "use strict";
   document.getElementById("start").onclick = startFunc;
-  document.getElementById("stop").onclick = startFunc;
+  document.getElementById("stop").onclick = stopFunc;
   document.getElementById("animation").onchange = animationChange;
   document.getElementById("fontsize").onchange = changeFontSizeFunc;
   document.getElementById("speed").onclick = setSpeedFunc;
 };
-var delaytimer = 250;
-function startFunc() {
-   var animationSelect = document.getElementById("animation").value;
-   console.log(animationSelect);
-   var textBox = document.getElementById("textBox").value;
-   console.log(textBox.value.indexOf('\n'));
- 
+var textBox = document.getElementById("textBox");
+var animationList = ["EXERCISE", "JUGGLER", "BIKE", "DIVE"];
+var delaytimer = null;
+var curFrame ;
+var frames = "";
+function stopFunc(){
+  document.getElementById("stop").disabled = true;
+  document.getElementById("start").disabled = false;
+  clearInterval(delaytimer);
+  delaytimer = null;
+  document.getElementById("textBox").value = frames[0];
 }
+function startFunc() {
+  document.getElementById("start").disabled = true;
+  document.getElementById("stop").disabled = false;
+  var animationSelect = document.getElementById("animation").value;
+  var animationStr = ANIMATIONS[animationSelect];
+  frames = animationStr.split("=====\n");
+  console.log(frames);
+  curFrame = 1;
+    if(delaytimer == null){
+      delaytimer = setInterval(preSetAnimation, 250);
+    }
+    else{
+      clearInterval(delaytimer);
+      delaytimer = null;
+    } 
+  }
 function changeFontSizeFunc() {
-    "use strict";
+  "use strict";
   var selectFontSize = document.getElementById("fontsize").value;
   console.log(selectFontSize);
   var textBox = document.getElementById("textBox");
@@ -44,22 +64,26 @@ function changeFontSizeFunc() {
   }
 }
 function animationChange() {
-    "use strict";
+  "use strict";
   var selectAnimation = document.getElementById("animation").value;
   console.log(selectAnimation);
   var textBox = document.getElementById("textBox");
   switch (selectAnimation) {
     case "Juggler":
-      textBox.value = JUGGLER;
+      var totalFrame = JUGGLER.split("=====\n");
+      textBox.value = totalFrame[0];
       break;
     case "Exercise":
-      textBox.value = EXERCISE;
+      var totalFrame = EXERCISE.split("=====\n");
+      textBox.value = totalFrame[0];
       break;
     case "Bike":
-      textBox.value = BIKE;
+      var totalFrame = BIKE.split("=====\n");
+      textBox.value = totalFrame[0];
       break;
     case "Dive":
-      textBox.value = DIVE;
+      var totalFrame = DIVE.split("=====\n");
+      textBox.value = totalFrame[0];
       break;
     default:
       textBox.value = "NOT SELECTED! TRY AGAIN";
@@ -67,12 +91,12 @@ function animationChange() {
   }
 }
 
-function setSpeedFunc(){
-    delaytimer = 50;
-}
-function preSetAnimation(){
-    var textBox = document.getElementById("textBox").value;
-    textBox.style.width += 40 + "px";
-    alert(textBox.style.width)
-
+function preSetAnimation() {
+  if(curFrame < frames.length){
+    document.getElementById("textBox").value = frames[curFrame++];  
+  }
+  else{
+    curFrame = 0;
+  }
+  console.log("delay Timer"+ curFrame);  
 }
