@@ -1,7 +1,7 @@
 var accounInfoList = [];
 var createAccount = (function () {
   function showListAccount() {
-    var resultStr = "";
+    let resultStr = "";
     for (var i = 0; i < accounInfoList.length; i++) {
       resultStr += "Account Name: " + accounInfoList[i].accName;
       resultStr += ", Deposit: " + accounInfoList[i].deposit;
@@ -11,7 +11,7 @@ var createAccount = (function () {
   }
   return {
     openAccount: function () {
-      var acc = new Account(document.getElementById("accountName").value, document.getElementById("deposit").value);
+      let acc = new Account(document.getElementById("accountName").value, document.getElementById("deposit").value);
       accounInfoList.push(acc);
       showListAccount();
     },
