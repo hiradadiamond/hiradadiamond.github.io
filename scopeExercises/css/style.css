@@ -1,0 +1,17 @@
+body{
+    background-color : #eee;
+}
+p{
+    font-family: 'Courier New', Courier, monospace;
+}
+h1{
+    text-align: center;
+}
+input{
+    width:100%;
+    padding:1%;
+    font-size:16px;
+}
+td{
+    border: 1px solid gray;
+}

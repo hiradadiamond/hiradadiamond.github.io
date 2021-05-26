@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Scope Exercise</title>
+    <meta charset="utf-8"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="js/scopeExercise.js"></script>
+</head>
+
+<body>
+<h1>Scope Exercise</h1>
+<d1>
+    <dt>
+        <h3>1. Determine what this Javascript code will print out (without running it):</h3>
+        <pre>
+                x = 1;
+                var a = 5;
+                var b = 10;
+                var c = function(a, b, c) {
+                var x = 10;
+                document.write(x);  //i
+                document.write(a);  //ii
+                var f = function(a, b, c) {
+                        b = a;
+                        document.write(b);  //iii
+                        b = c;
+                        var x = 5;
+                    }
+                f(a,b,c);
+                document.write(b);  //iv
+             }
+            c(8,9,10);
+            document.write(b);
+            document.write(x);
+           </pre>
+    </dt>
+    <dd>
+        <p> Answers:</p>
+        <pre>
+            c(8,9,10);     -> 
+                                  10  //i 
+                                  8  //ii
+                                  8  //iii
+                                  9  //iv            
+            document.write(b); -> 10
+            document.write(x); -> 1
+            </pre>
+    </dd>
+    <dt>
+        <h3>2. What is the difference between a method and function?</h3>
+    </dt>
+    <dd>
+        <table>
+            <tr>
+                <td>JavaScript Function</td>
+                <td>JavaScript Methods</td>
+            </tr>
+
+            <tr>
+                <td>Block of codes that performs specific tasks</td>
+                <td>Property of an object that contains function definition</td>
+            </tr>
+            <tr>
+                <td>Function can pass the data that is operaated and may returned the data</td>
+                <td>Method operates data that contained in a class</td>
+            </tr>
+            <tr>
+                <td>Function can be called by its name
+                </td>
+                <td>
+                    A method consists of a code that can be called by the name of its object and its method name
+                    using dot notation or square bracket notation..
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                        <pre>
+                        function aFunc(parameters) {
+                            // Content
+                        }
+                        aFunc(); // function call
+                    </pre>
+                </td>
+                <td>
+                        <pre>
+                            var student = {
+                                fullname : function() {
+                                    // Content
+                                }
+                            };
+                            
+                            student.fullname() // method call
+                        </pre>
+                </td>
+            </tr>
+        </table>
+    </dd>
+    <dt>
+        <h3>3.What does 'this' refer to when used in a Java method?</h3>
+    </dt>
+    <dd>
+        This : refers to te current object in a method or in a constructor.
+    </dd>
+    <dt>
+        <h3>4. What does 'this' refer to when used in a JavaScript method?</h3>
+    </dt>
+    <dd>This : it has different values depending on where it is used:
+        <ul>
+            <li>IN METHOD: It refers to <strong>owner</strong> object</li>
+            <li>ALONE: It refers to <strong>global</strong> object</li>
+            <li>IN A FUCNTION: It refers to <strong>global</strong> object</li>
+            </li>
+            <li>IN AN EVENT: It refers to the element that recieved the event.</li>
+        </ul>
+    </dd>
+    <dt>
+        <h3>5.What does 'this' refer to when used in a JavaScript constructor function?</h3>
+    </dt>
+    <dd>The value of this, when used in an object, is the object itself.
+
+        <p>
+            In a constructor function this does not have a value. It is a substitute for the new object. The value
+            of this will become the new object when a new object is created.
+        </p>
+    </dd>
+    <dt>
+        <h3>6. Assume object x is the prototype for object y in Javascript. Object x has a method f( ) containing
+            keyword 'this'.
+            When f is called by x.f( ), what does 'this' refer to?</h3>
+    </dt>
+    <dd>
+        This - referes to X
+    </dd>
+
+    <dt>
+        <h3>7.What is a free variable in JavaScript?</h3>
+    </dt>
+    <dd>Free Varaible: A vraible that refered to a function that neither it's parameters nor local variable
+        <p>There are lexical scope where a closure is created and free variale is used in javascript. </p>
+    </dd>
+    <dt>
+        <h3>8.Create an object that has properties with name = "fred" and major="music" and a property that is a
+            function
+            that takes 2 numbers and returns the smallest of the two, or the square of the two if they are equal.
+        </h3>
+    </dt>
+    <dd>
+            <pre>
+                var aObj = {
+                    name : "fred",
+                    major: "music",
+                    smallestOfTwo: function(a,b){
+                        if(a>b){
+                            return b;
+                        }
+                        else if(a==b){
+                            return a*a;
+                        }
+                        else{
+                            return a;
+                        }
+                    }
+                
+                }
+            </pre>
+    </dd>
+    <dt>
+        <h3>9. Write Javascript code for creating three Employee objects using the "new" keyword and a constructor
+            function.
+            Employee objects have the following fields: name, salary, position.</h3>
+    </dt>
+    <dd>
+            <pre>
+                function Employee(name, salary, position) {
+                    this.name = name;
+                    this.salary = salary;
+                    this.position = position;   
+                }
+                var emp1 = new Employee("Km Hira", 4000, "Software-Developer");
+                var emp2 = new Employee("Vishnu", 2000, "Junior-Developer");
+                var emp3 = new Employee("Anne", 6000, "Manager");
+            </pre>
+    </dd>
+    <dt>
+        <h3>10. Write a Javascript function that takes any number of input arguments and returns the product of the
+            arguments.</h3>
+    </dt>
+    <dd>
+            <pre>
+                function product(x, y, ...more) {
+                    var total = x * y;
+                    if (more.length > 0) {
+                      for (var i = 0; i < more.length; i++) {
+                        total *= more[i];
+                      }
+                    }
+                    return total;
+                  }
+            </pre>
+        <p> Another way:</p>
+        <pre>
+                function productOfArguments() {
+                    let i;
+                    let productResult = 1;
+                    for (i = 0; i < arguments.length; ++i) {
+                      productResult *= arguments[i];
+                    }
+                    return productResult;
+                }
+            </pre>
+
+    </dd>
+    <dt>
+        <h3>11. Write an arrow function that returns the maximum of its three input arguments.</h3>
+    </dt>
+    <dd>
+            <pre>
+                var maxOfThree = (a,b,c) =>{
+                    let max = Math.max(a,b);
+                    return Math.max(c,max);
+                }
+            </pre>
+    </dd>
+    <hr/>
+    <dt>Ref:</dt>
+    <dd>
+        <dl>
+            <dd>https://www.geeksforgeeks.org/difference-between-methods-and-functions-in-javascript/</dd>
+            <dd>https://www.w3schools.com/js/js_this.asp</dd>
+        </dl>
+
+    </dd>
+</d1>
+</body>
+
+</html>
