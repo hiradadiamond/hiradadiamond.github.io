@@ -1,7 +1,7 @@
 var rudyTimer = (function () {
   "use strict";
-  var timer = null;
-  var rudy = function () {
+  let timer = null;
+  let rudy = function () {
     document.getElementById("output").innerText += "Rudy!";
   };
   function delayMsg2() {
