@@ -56,10 +56,10 @@
         <h3>2.Define Global Scope and Local Scope in Javascript.</h3>
     </dt>
     <dd>
-        <p>Global Scope: In Javascript, there is one global socpe. Variable defined in that scope can accesed
+        <p>Global Scope: In Javascript, there is one global scope. Variable defined in that scope can be accesed
             anywhere
             in file.</p>
-        <p>Local Scope: Fucntions defines its own scope called local scope. The variable defined in that scope only
+        <p>Local Scope: Function define its own scope called local scope. The variable defined in that scope are only
             accessible to that scope.</p>
     </dd>
     <dt>
@@ -106,6 +106,7 @@
         <p>25</p>
     </dd>
     <dt>
+        <h3>5. What will the alert print out? (Answer without running the code. Remember ‘hoisting’.)?</h3>
         <pre>var foo = 1;
              function bar() {
                 if (!foo) {
@@ -115,7 +116,6 @@
              }
             bar();
         </pre>
-        <h3>5. What will the alert print out? (Answer without running the code. Remember ‘hoisting’.)?</h3>
     </dt>
     <dd>
         <p> Answer:</p>
@@ -161,7 +161,7 @@
             what is a "free" variable?</h3>
     </dt>
     <dd>
-        <p> Answer:</p>var counter = 0; counter is a free variable in above add().
+        <p> Answer:</p>In the cntext of javascript closure, free variables are those variables that a child scope can use because those variable were declared in the enclosing or parent scope.<br/> var counter = 0; counter is a free variable in above add().
     </dd>
     <dt>
         <h3>8. The add( ) function defined in question 6 always adds 1 to the counter each time it is called. Write
@@ -205,7 +205,7 @@
     </dt>
     <dd>
         <p> Answer:<br/>
-            Using Module pattern we can remove global namespace.
+            Using Module pattern we can remove  all the names from global namespace.
         </p>
     </dd>
     <dt>
@@ -256,7 +256,7 @@
                                   };
                     var increaseSalary = function(percentage){
                                             var sal = getSalary();
-                                            return sal + (sal*percentage)*0.01;
+                                           setSalary(sal + (sal*percentage)*0.01);
                                         };
                     var incrementAge = function(){      
                                             var newAge = getAge() + 1;
@@ -299,7 +299,7 @@
                                     },
                         increaseSalary: function(percentage){
                                             var sal = getSalary();
-                                            return sal + (sal*percentage)*0.01;
+                                            setSalary(sal + (sal*percentage)*0.01);
                                         },
                         incrementAge: function(){
                                         var newAge = getAge() + 1;
@@ -335,7 +335,7 @@
                               },
                     increaseSalary: function(percentage){
                                         var sal = getSalary();
-                                        return sal + (sal*percentage)*0.01;
+                                        setSalary(sal + (sal*percentage)*0.01);
                                     },
                     incrementAge: function(){
                                       var newAge = getAge() + 1;
@@ -354,16 +354,26 @@
     <dd>
         <p>Answer:</p>
         <pre>
-                Employee.extension = function(){
-                    let address;
-                    let setAddress = function(adr){
-                        this.address = adr;
-                    };
-                    let getAddress = function(){
-                        return address;
-                    };
-                };
-                
+            Employee.address = function() {
+                                    var address;
+                                    return address;
+            }();
+             //self executing function assigns Employee.address to a new variable address
+            Employee.setAddress = function() {
+                                    var setAddress = function (newAddress) {
+                                                this.address = newAddress;
+                                    };
+    	                           return setAddress;
+            }();
+            //self executing function assigns Employee.setAddress to a new public method
+
+            Employee.getAddress = function() {
+                                        var getAddress = function () {
+                                            return this.address;
+                                        };
+                                        return getAddress;
+            }();  /
+            //self executing function assigns Employee.getAddress to a new public method
             </pre>
     </dd>
     <dt>
@@ -396,7 +406,6 @@
         <p>Answer:</p>
         <pre>
                 Succes: Hattori
-                Error: Yoshi
             </pre>
     </dd>
     <dt>
@@ -423,7 +432,7 @@
     </dt>
     <dd>
         <p>Answer:</p>
-        <pre>sucess
+        <pre>   sucess
                 error
                 Error caught
             </pre>
