@@ -316,31 +316,31 @@
         <p>Answer:</p>
         <pre>var Employee = (function () {
                 var name, age, salary;
-            
-                let getAge = function () {
-                                return age;
-                             };
-                let getSalary = function () {
-                                    return salary;
+
+                    let getAge = function () {
+                                    return age;
+                                 };
+                    let getSalary = function () {
+                                        return salary;
+                                    };
+                    let employeeObj = {};
+                    employeeObj.setAge = function(newAge) {
+                                    age = newAge;
                                 };
-                let employeeObj =  {
-                    setAge: function(newAge) {
-                                age = newAge;
-                            },
-                    setName:function(newName) {
-                                name = newName;
-                            },
-                    setSalary:function(newSalary) {
-                                  salary = newSalary;
-                              },
-                    increaseSalary: function(percentage){
-                                        var sal = getSalary();
-                                        setSalary(sal + (sal*percentage)*0.01);
-                                    },
-                    incrementAge: function(){
-                                      var newAge = getAge() + 1;
-                                      setAge(newAge);
-                                    }
+                    employeeObj.setName = function(newName) {
+                                    name = newName;
+                                };
+                    employeeObj.setSalary = function(newSalary) {
+                                      salary = newSalary;
+                                  };
+                    employeeObj.increaseSalary= function(percentage){
+                                            var sal = getSalary();
+                                            setSalary(sal + (sal*percentage)*0.01);
+                                        };
+                    employeeObj.incrementAge = function(){
+                                          var newAge = getAge() + 1;
+                                          setAge(newAge);
+                                        };
                 };
                 return employeeObj;
             })();</pre>
@@ -354,26 +354,13 @@
     <dd>
         <p>Answer:</p>
         <pre>
-            Employee.address = function() {
-                                    var address;
-                                    return address;
-            }();
-             //self executing function assigns Employee.address to a new variable address
-            Employee.setAddress = function() {
-                                    var setAddress = function (newAddress) {
-                                                this.address = newAddress;
-                                    };
-    	                           return setAddress;
-            }();
-            //self executing function assigns Employee.setAddress to a new public method
-
+            Employee.address = "";
+            Employee.setAddress = function(newAddress) {
+                                      this.setAddress = newAddress;
+            };
             Employee.getAddress = function() {
-                                        var getAddress = function () {
-                                            return this.address;
-                                        };
-                                        return getAddress;
-            }();  /
-            //self executing function assigns Employee.getAddress to a new public method
+                                      return this.address;
+            };
             </pre>
     </dd>
     <dt>
