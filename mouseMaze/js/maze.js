@@ -31,5 +31,6 @@ $(document).ready(function () {
     alert(currentStatus);
     $(this).off();
     $("#maze div.boundary").off();
+    $(this).off();
   }
 });
