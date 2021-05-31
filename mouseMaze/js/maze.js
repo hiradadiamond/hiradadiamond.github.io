@@ -16,6 +16,7 @@ $(document).ready(function () {
   }
 
   function reset() {
+    win = true;
     statusText = "Game Started!";
     $("#status").html(statusText).css("color", "green");
     $(".boundary").each(function () {
@@ -32,5 +33,6 @@ $(document).ready(function () {
     $(this).off();
     $("#maze div.boundary").off();
     $(this).off();
+    return true;
   }
 });
