@@ -24,6 +24,12 @@ body, button {
 	height: 90px;
 	position: absolute;
 }
+.shuffledpiece {
+	border: 5px solid black;
+	width: 90px;
+	height: 90px;
+	position: absolute;
+}
 
 /* This class should be applied to a puzzle piece that can be moved. */
 .movablepiece:hover {
