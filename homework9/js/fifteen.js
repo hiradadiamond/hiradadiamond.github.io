@@ -63,8 +63,7 @@ $(document).ready(function () {
         col = tempY;
         $(elem).removeAttr("id");
         $(elem).attr("id", idvalue);
-      } 
-      else {
+      } else {
         alert("sorry");
         $(this).off(click);
       }
