@@ -31,6 +31,7 @@ $(document).ready(function () {
 
   // <!--Shuffle  Algorithim -->
   $("#shufflebutton").click(function () {
+    init();
     let originalUnshuffledArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
     var shuffleArray = function (arr) {
       let numElements = arr.length;
