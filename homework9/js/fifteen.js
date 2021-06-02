@@ -3,11 +3,11 @@ var row = 3;
 var col = 3;
 const WIDTH = 100;
 const HEIGHT = 100;
-var shuffled = false;
 $(document).ready(function () {
   //<-- first initialize puzzle in background--->
   var init = function () {
-    shuffled = false;
+    row = 3;
+    col = 3;
     var xPos = function (num) {
       return (num % 4) * 100;
     };
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
   // <!--Shuffle  Algorithim -->
   $("#shufflebutton").click(function () {
-    shuffled = true;
+    init();
     let originalUnshuffledArray = [
       0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
     ];
@@ -50,9 +50,33 @@ $(document).ready(function () {
       }
       return arr;
     };
+
+    var randomizeEmptyArea = function (arr) {
+      let numElements = arr.length;
+      let randDivIdx = Math.floor(Math.random() * numElements);
+      var randDiv = $("#puzzlearea div")[randDivIdx];
+      console.log("Empty area is: x => " + row + " and y => " + col);
+      let randDivX = $(randDiv).position().left;
+      let randDivY = $(randDiv).position().top;
+      $(randDiv).css({
+        top: col * HEIGHT,
+        left: row * WIDTH,
+      });
+      row = randDivX / 100;
+      col = randDivY / 100;
+      console.log("Empty area is: x => " + row + " and y => " + col);
+    };
+
     let shuffledArray = shuffleArray(originalUnshuffledArray);
     console.log(shuffledArray);
     $("#puzzlearea div").each(function (idx) {
+      console.log(
+        "Current idx is " +
+          idx +
+          " but we are going to plot " +
+          shuffledArray[idx] +
+          " index"
+      );
       let newIdx = shuffledArray[idx];
       var xPos = function (num) {
         return (num % 4) * 100;
@@ -64,9 +88,6 @@ $(document).ready(function () {
       var y = yPos(newIdx);
       var origX = xPos(idx);
       var origY = yPos(idx);
-      var xId = origX / 100;
-      var yId = origY / 100;
-      var newID = "square_" + xId + yId;
       $(this).addClass("puzzlepiece");
       $(this).css({
         left: x + "px",
@@ -74,49 +95,47 @@ $(document).ready(function () {
         "background-image": "url(images/background.jpg)",
         "background-position": -origX + "px " + -origY + "px",
       });
-      $(this).removeAttr("id");
-      $(this).attr("id", newID);
       $(this).x = x;
       $(this).y = y;
     });
+    randomizeEmptyArea(shuffledArray);
   });
 
   //<---moveElemets check and addhover--->
-  $("#puzzlearea div").hover(function () {
-    if (shuffled == true) {
-      $(this).addClass("movablepiece");
-      var div = $(this);
-      $(this).click(function () {
-        var canMove = isMovable(div);
-        console.log(canMove);
-        if (canMove) {
-          var curElemPosition = $(this).position();
-          var x = curElemPosition.left;
-          var y = curElemPosition.top;
-          var tempX = x / 100;
-          var tempY = y / 100;
-          var idvalue = "square_" + tempX + tempY;
-          $(this).css({
-            top: col * HEIGHT,
-            left: row * WIDTH,
-          });
-          row = tempX;
-          col = tempY;
-          $(elem).removeAttr("id");
-          $(elem).attr("id", idvalue);
-        } else {
-          alert("sorry");
-          $(this).off(click);
-        }
-      });
-    } 
+  $("#puzzlearea div").hover(function (event) {
+    $(this).addClass("movablepiece");
+    var div = $(this);
+    event.preventDefault();
+    $(this).click(function (event) {
+      $("#shufflebutton").off();
+      event.preventDefault();
+      var canMove = isMovable(div);
+      if (canMove) {
+        var curElemPosition = $(this).position();
+        var x = curElemPosition.left;
+        var y = curElemPosition.top;
+        console.log(x + "x" + "y" + y);
+        var tempX = x / 100;
+        var tempY = y / 100;
+        $(this).css({
+          top: col * HEIGHT,
+          left: row * WIDTH,
+        });
+        row = tempX;
+        col = tempY;
+      } else {
+        alert("Sorry, Can't Move");
+        $(this).off(click);
+      }
+    });
+    return true;
   });
   //<!--- isMovable Div ---->
-  var isMovable = function (elem) {
+  var isMovable = function (div) {
     var emptySquareXpos = row * WIDTH;
     var emptySquareYpos = col * HEIGHT;
 
-    var curElemPosition = $(elem).position();
+    var curElemPosition = $(div).position();
     var x = curElemPosition.left;
     var y = curElemPosition.top;
 
