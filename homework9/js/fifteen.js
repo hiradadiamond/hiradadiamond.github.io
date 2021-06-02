@@ -31,106 +31,37 @@ $(document).ready(function () {
   };
   init();
 
-  // <!--Shuffle  Algorithim -->
-  $("#shufflebutton").click(function () {
-    init();
-    let originalUnshuffledArray = [
-      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-    ];
-    var shuffleArray = function (arr) {
-      let numElements = arr.length;
-      let numTimesToShuffle = numElements;
-      while (numTimesToShuffle != 0) {
-        let randIdx1 = Math.floor(Math.random() * numElements);
-        let randIdx2 = Math.floor(Math.random() * numElements);
-        let tmp = arr[randIdx1];
-        arr[randIdx1] = arr[randIdx2];
-        arr[randIdx2] = tmp;
-        numTimesToShuffle -= 1;
-      }
-      return arr;
-    };
+  //<!----UTILITY FUCNTIONS----->
+  var shuffleArray = function (arr) {
+    let numElements = arr.length;
+    let numTimesToShuffle = numElements;
+    while (numTimesToShuffle != 0) {
+      let randIdx1 = Math.floor(Math.random() * numElements);
+      let randIdx2 = Math.floor(Math.random() * numElements);
+      let tmp = arr[randIdx1];
+      arr[randIdx1] = arr[randIdx2];
+      arr[randIdx2] = tmp;
+      numTimesToShuffle -= 1;
+    }
+    return arr;
+  };
 
-    var randomizeEmptyArea = function (arr) {
-      let numElements = arr.length;
-      let randDivIdx = Math.floor(Math.random() * numElements);
-      var randDiv = $("#puzzlearea div")[randDivIdx];
-      console.log("Empty area is: x => " + row + " and y => " + col);
-      let randDivX = $(randDiv).position().left;
-      let randDivY = $(randDiv).position().top;
-      $(randDiv).css({
-        top: col * HEIGHT,
-        left: row * WIDTH,
-      });
-      row = randDivX / 100;
-      col = randDivY / 100;
-      console.log("Empty area is: x => " + row + " and y => " + col);
-    };
-
-    let shuffledArray = shuffleArray(originalUnshuffledArray);
-    console.log(shuffledArray);
-    $("#puzzlearea div").each(function (idx) {
-      console.log(
-        "Current idx is " +
-          idx +
-          " but we are going to plot " +
-          shuffledArray[idx] +
-          " index"
-      );
-      let newIdx = shuffledArray[idx];
-      var xPos = function (num) {
-        return (num % 4) * 100;
-      };
-      var yPos = function (num) {
-        return Math.floor(num / 4) * 100;
-      };
-      var x = xPos(newIdx);
-      var y = yPos(newIdx);
-      var origX = xPos(idx);
-      var origY = yPos(idx);
-      $(this).addClass("puzzlepiece");
-      $(this).css({
-        left: x + "px",
-        top: y + "px",
-        "background-image": "url(images/background.jpg)",
-        "background-position": -origX + "px " + -origY + "px",
-      });
-      $(this).x = x;
-      $(this).y = y;
+  var randomizeEmptyArea = function (arr) {
+    let numElements = arr.length;
+    let randDivIdx = Math.floor(Math.random() * numElements);
+    var randDiv = $("#puzzlearea div")[randDivIdx];
+    console.log("Empty area is: x => " + row + " and y => " + col);
+    let randDivX = $(randDiv).position().left;
+    let randDivY = $(randDiv).position().top;
+    $(randDiv).css({
+      top: col * HEIGHT,
+      left: row * WIDTH,
     });
-    randomizeEmptyArea(shuffledArray);
-  });
+    row = randDivX / 100;
+    col = randDivY / 100;
+    console.log("Empty area is: x => " + row + " and y => " + col);
+  };
 
-  //<---moveElemets check and addhover--->
-  $("#puzzlearea div").hover(function (event) {
-    $(this).addClass("movablepiece");
-    var div = $(this);
-    event.preventDefault();
-    $(this).click(function (event) {
-      $("#shufflebutton").off();
-      event.preventDefault();
-      var canMove = isMovable(div);
-      if (canMove) {
-        var curElemPosition = $(this).position();
-        var x = curElemPosition.left;
-        var y = curElemPosition.top;
-        console.log(x + "x" + "y" + y);
-        var tempX = x / 100;
-        var tempY = y / 100;
-        $(this).css({
-          top: col * HEIGHT,
-          left: row * WIDTH,
-        });
-        row = tempX;
-        col = tempY;
-      } else {
-        alert("Sorry, Can't Move");
-        $(this).off(click);
-      }
-    });
-    return true;
-  });
-  //<!--- isMovable Div ---->
   var isMovable = function (div) {
     var emptySquareXpos = row * WIDTH;
     var emptySquareYpos = col * HEIGHT;
@@ -159,4 +90,74 @@ $(document).ready(function () {
       return false;
     }
   };
+
+  // <!--Shuffle  Algorithim -->
+  $("#shufflebutton").click(function () {
+    init();
+    let originalUnshuffledArray = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+    ];
+    let shuffledArray = shuffleArray(originalUnshuffledArray);
+    console.log(shuffledArray);
+    $("#puzzlearea div").each(function (idx) {
+      let newIdx = shuffledArray[idx];
+      var xPos = function (num) {
+        return (num % 4) * 100;
+      };
+      var yPos = function (num) {
+        return Math.floor(num / 4) * 100;
+      };
+      var x = xPos(newIdx);
+      var y = yPos(newIdx);
+      var origX = xPos(idx);
+      var origY = yPos(idx);
+      $(this).addClass("puzzlepiece");
+      $(this).css({
+        left: x + "px",
+        top: y + "px",
+        "background-image": "url(images/background.jpg)",
+        "background-position": -origX + "px " + -origY + "px",
+      });
+      $(this).x = x;
+      $(this).y = y;
+    });
+    randomizeEmptyArea(shuffledArray);
+  });
+
+//<!---- puzzle play -- ((hover and move )) --->
+
+  $("#puzzlearea div").hover(
+    function () {
+      $(this).addClass("movablepiece");
+    },
+    function () {
+      $(this).removeClass("movablepiece");
+    }
+  );
+
+  $("#puzzlearea div").click(function () {
+    $("#shufflebutton").off();
+    var div = $(this);
+    var checkMov = isMovable(div);
+    if (checkMov) {
+      movePiece(div);
+    } else {
+      alert("Sorry, can't Move");
+    }
+  });
+
+  function movePiece(div) {
+    var curElemPosition = div.position();
+    var x = curElemPosition.left;
+    var y = curElemPosition.top;
+    console.log(x + "x" + "y" + y);
+    var tempX = x / 100;
+    var tempY = y / 100;
+    $(div).css({
+      top: col * HEIGHT,
+      left: row * WIDTH,
+    });
+    row = tempX;
+    col = tempY;
+  }
 });
