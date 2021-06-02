@@ -1,8 +1,17 @@
 var win = true;
-$(document).ready(function () {
-  $("#maze div.boundary").off();
-  $("#end").off();
+$(function () {
   $("#start").click(reset);
+  $("#maze").hover(
+    function(){
+      $("#maze div.boundary").on();
+      $("#end").on();
+    },
+    function(){
+      $("#maze div.boundary").off();
+      $("#end").off();
+    }
+    );
+});
 
   var statusText = $("#status").text();
 
@@ -32,7 +41,5 @@ $(document).ready(function () {
     alert(currentStatus);
     $(this).off();
     $("#maze div.boundary").off();
-    $(this).off();
     return true;
   }
-});
